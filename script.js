@@ -77,22 +77,36 @@ function displayBooks(){
     idBook.classList.add("idBook");
     book.appendChild(idBook);
     idBook.textContent = item.id;
+
+    const button = document.createElement("button");
+    button.classList.add("buttonDelete");
+    book.appendChild(button);
+    button.textContent = "remove book";
     }
+};
+
+//book remover
+const buttonDelete = document.getElementsByClassName("buttonDelete");
+
+//buttonDelete.addEventListener("click", () => {})
+function locate(){
+    console.log(myLibrary.prototype.indexOf("George Orwell"))
 };
 
 //book creator
 const button = document.getElementById("submit");
 button.addEventListener("click", () => {
-    title = document.getElementById("title").value;
-    author = document.getElementById("author").value;
-    pages = document.getElementById("pages").value;
-    read = document.getElementById("read").checked;
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let read = document.getElementById("read").checked;
     
     new Book(title, author, pages, read );
     displayBooks();
   });
 
   displayBooks();
+  locate();
 //var theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, 0);
 
 //console.log(theHobbit.info());  "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
