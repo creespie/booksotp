@@ -1,6 +1,6 @@
 const myLibrary = [
-    { title: "1984", author: "George Orwell", pages: 328, read: true, idBook: 1 },
-    { title: "Il Signore degli Anelli", author: "J.R.R. Tolkien", pages: 1178, read: false, idBook: 2 }
+    { title: "1984", author: "George Orwell", pages: 328, read: true, id: crypto.randomUUID() },
+    { title: "Il Signore degli Anelli", author: "J.R.R. Tolkien", pages: 1178, read: false, id: crypto.randomUUID()}
 ];
 
 function Book(title, author, pages, read){
@@ -32,28 +32,6 @@ function displayBooks(){
 
     while(count > 0){
         const book = document.getElementsByClassName("book")[0];
-        
-        const title = document.getElementsByClassName("title")[0];
-        book.removeChild(title);
-        
-        const author = document.getElementsByClassName("author")[0];
-        book.removeChild(author);
-        
-        const pages = document.getElementsByClassName("pages")[0];
-        book.removeChild(pages);
-        
-        const read = document.getElementsByClassName("read")[0];
-        book.removeChild(read);
-        
-        // const idBook = document.getElementsByClassName("idBook")[0];
-        // book.removeChild(idBook);
-        
-        const buttonDelete = document.getElementsByClassName("buttonDelete")[0];
-        book.removeChild(buttonDelete);
-        
-        const buttonToggle = document.getElementsByClassName("buttonToggle")[0];
-        book.removeChild(buttonToggle);
-        
         library.removeChild(book);
         count--;
     };
@@ -84,14 +62,14 @@ function displayBooks(){
     book.appendChild(read);
     read.textContent = item.read ? "already read" : "not read yet";
 
-    book.setAttribute("data-id", item.id);
+    book.dataset.id = item.id;
 
     const buttonDelete = document.createElement("button");
     buttonDelete.classList.add("buttonDelete");
     book.appendChild(buttonDelete);
     buttonDelete.textContent = "remove book";
     buttonDelete.addEventListener("click", () => {
-        deleteBook(data-id);
+        deleteBook(book.dataset.id);
     })
 
 
@@ -108,7 +86,13 @@ function displayBooks(){
 };
 
 function deleteBook(id){
-    myLibrary = myLibrary.filter(id => book.data-id != id)
+    for(let item of myLibrary){
+        if (item.id === id){
+            const index = myLibrary.indexOf(item)
+            myLibrary.splice(index, 1)
+            displayBooks()
+        }
+    }
 }
 
 //book creator
