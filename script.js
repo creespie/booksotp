@@ -84,17 +84,14 @@ function displayBooks(){
     book.appendChild(read);
     read.textContent = item.read ? "already read" : "not read yet";
 
-    // const idBook = document.createElement("div");
-    // idBook.classList.add("idBook");
-    // book.appendChild(idBook);
-    // idBook.textContent = item.id;
+    book.setAttribute("data-id", item.id);
 
     const buttonDelete = document.createElement("button");
     buttonDelete.classList.add("buttonDelete");
     book.appendChild(buttonDelete);
     buttonDelete.textContent = "remove book";
     buttonDelete.addEventListener("click", () => {
-        library.removeChild(book)
+        deleteBook(data-id);
     })
 
 
@@ -110,6 +107,9 @@ function displayBooks(){
     }
 };
 
+function deleteBook(id){
+    myLibrary = myLibrary.filter(id => book.data-id != id)
+}
 
 //book creator
 const button = document.getElementById("submit");
