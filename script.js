@@ -110,10 +110,6 @@ function displayBooks(){
     }
 };
 
-// book remover
-// const buttonDelete = document.getElementsByClassName("buttonDelete");
-// const buttonToggle = document.getElementsByClassName("buttonToggle");
-
 
 //book creator
 const button = document.getElementById("submit");
@@ -128,7 +124,7 @@ button.addEventListener("click", () => {
   });
 
   displayBooks();
-//   locate();
-//var theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, 0);
+
+
 
 //console.log(theHobbit.info());  "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
