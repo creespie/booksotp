@@ -32,16 +32,27 @@ function displayBooks(){
 
     while(count > 0){
         const book = document.getElementsByClassName("book")[0];
+        
         const title = document.getElementsByClassName("title")[0];
         book.removeChild(title);
+        
         const author = document.getElementsByClassName("author")[0];
         book.removeChild(author);
+        
         const pages = document.getElementsByClassName("pages")[0];
         book.removeChild(pages);
+        
         const read = document.getElementsByClassName("read")[0];
         book.removeChild(read);
-        const idBook = document.getElementsByClassName("idBook")[0];
-        book.removeChild(idBook);
+        
+        // const idBook = document.getElementsByClassName("idBook")[0];
+        // book.removeChild(idBook);
+        
+        const buttonDelete = document.getElementsByClassName("buttonDelete")[0];
+        book.removeChild(buttonDelete);
+        
+        const buttonToggle = document.getElementsByClassName("buttonToggle")[0];
+        book.removeChild(buttonToggle);
         
         library.removeChild(book);
         count--;
@@ -73,25 +84,36 @@ function displayBooks(){
     book.appendChild(read);
     read.textContent = item.read ? "already read" : "not read yet";
 
-    const idBook = document.createElement("div");
-    idBook.classList.add("idBook");
-    book.appendChild(idBook);
-    idBook.textContent = item.id;
+    // const idBook = document.createElement("div");
+    // idBook.classList.add("idBook");
+    // book.appendChild(idBook);
+    // idBook.textContent = item.id;
 
-    const button = document.createElement("button");
-    button.classList.add("buttonDelete");
-    book.appendChild(button);
-    button.textContent = "remove book";
+    const buttonDelete = document.createElement("button");
+    buttonDelete.classList.add("buttonDelete");
+    book.appendChild(buttonDelete);
+    buttonDelete.textContent = "remove book";
+    buttonDelete.addEventListener("click", () => {
+        library.removeChild(book)
+    })
+
+
+    const buttonToggle = document.createElement("button");
+    buttonToggle.classList.add("buttonToggle");
+    book.appendChild(buttonToggle);
+    buttonToggle.textContent = "toggle read";
+    buttonToggle.addEventListener("click", () => {
+        item.read = !item.read;
+        read.textContent = item.read ? "already read" : "not read yet";
+    })
+
     }
 };
 
-//book remover
-const buttonDelete = document.getElementsByClassName("buttonDelete");
+// book remover
+// const buttonDelete = document.getElementsByClassName("buttonDelete");
+// const buttonToggle = document.getElementsByClassName("buttonToggle");
 
-//buttonDelete.addEventListener("click", () => {})
-function locate(){
-    console.log(myLibrary.prototype.indexOf("George Orwell"))
-};
 
 //book creator
 const button = document.getElementById("submit");
@@ -106,7 +128,7 @@ button.addEventListener("click", () => {
   });
 
   displayBooks();
-  locate();
+//   locate();
 //var theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, 0);
 
 //console.log(theHobbit.info());  "The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
