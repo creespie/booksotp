@@ -3,7 +3,8 @@ const myLibrary = [
     { title: "Il Signore degli Anelli", author: "J.R.R. Tolkien", pages: 1178, read: false, id: crypto.randomUUID()}
 ];
 
-function Book(title, author, pages, read){
+class Book {
+    constructor(title, author, pages, read){
     //check for new
     if (!new.target) {
         throw Error('Must use the new operator to call the constructor');
@@ -14,13 +15,13 @@ function Book(title, author, pages, read){
     this.pages = pages;
     this.read = read;
     this.id = crypto.randomUUID();
-    this.info = function(){
-       info = title + ", by " + author + ", " + pages + " pages, " + (read ? "already read, " : "not read yet, ") + id;
-       return info;
-    };
-    //adds to the array
     myLibrary.push(this)
-}
+    }
+
+    info() {
+       let info = this.title + ", by " + this.author + ", " + this.pages + " pages, " + (this.read ? "already read, " : "not read yet, ") + this.id;
+       return info; }; 
+};
 
 //library container in the html
 
